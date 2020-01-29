@@ -1,0 +1,78 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!--
+Lede
+
+Copyright (c) 2012 Nick Montfort <nickm@nickm.com>
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved. This file is offered as-is,
+without any warranty.
+-->
+<style type="text/css">
+/* <![CDATA[ */
+body {
+ background: #fff;
+ color: #000;
+ margin: 0 0 0 24pt;
+ font-family: Optima, sans-serif;
+ font-size: 13pt;
+}
+a {
+ color: #117;
+ text-decoration: none;
+}
+/* ]]> */
+</style>
+<script type="text/javascript">
+var t = 0;
+var weapon = ["bow","knife","sword","axe","spellbook","staff","spear"]
+var personality = ["Sacred","Hallowed","Pious","Silent","Murderous","Adventurous","Forgotten","Quiet"];
+var character = ["Archer","Warrior","Seductress","Assassin","Hunter","Soldier","Thief","Demon"];
+var kingdom = ["Orient","Desert","Highlands","Caves","Mountains","Hills"];
+var monsters = ["Goblins","Zombies","Werewolves","Mummies","Dwarves","Raiders"]
+var direction = ["East","West","North","South"]
+function rand_range(max) {
+    "use strict";
+    return Math.floor(Math.random() * (max + 1));
+}
+function fresh(array) {
+    "use strict";
+    var index = rand_range(array.length - 2) + 1, selection = array[index];
+    array[index] = array[0];
+    array[0] = selection;
+    return selection;
+}
+function story() {
+    "use strict";
+    var last, lede, main = document.getElementById('main');
+    if (t <= 12) {
+        t += 1;
+    } else {
+        main.removeChild(document.getElementById('main').firstChild);
+    }
+    last = document.createElement('div');
+    last.appendChild(document.createElement('br'));
+    lede = "Ready your " + fresh(weapon) + ", " + fresh(personality) + " " + fresh(character) + " of the " + fresh(kingdom) + "! " + fresh(monsters) + " lurk to the " + fresh(direction) + "!";
+    last.appendChild(document.createTextNode(lede));
+    main.appendChild(last);
+}
+function produce_stories() {
+    "use strict";
+    story();
+    setInterval(story, 3500);
+}</script>
+  <title>Lede</title>
+</head>
+<body onload="produce_stories();">
+<div style="float:right; background:#999; margin-left:6px; border-left:thin #000 solid; border-bottom:thin #000 solid; padding:6px">
+<div><br>Lede<br />Based on a <a href="http://www.newser.com/story/157857/scotlands-new-hero-is-man-in-giraffe-suit.html">True Story</a><br /><a href="http://nickm.com">Nick Montfort</a></div>
+</div>
+<div id="main"></div>
+</body>
+</html>
