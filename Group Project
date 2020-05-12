@@ -1,0 +1,16 @@
+#Group Program Ali
+
+from textblob import TextBlob
+
+source = open('desktop/mobey.txt')
+
+moby = source.read()
+
+moby = moby[3:]
+
+def adj(mobyblob):
+    count = 0
+    for (word, tag) in mobyblob.tags:
+        if tag == 'JJ':
+            count = count + 1
+    return count
