@@ -8,9 +8,12 @@ moby = source.read()
 
 moby = moby[3:]
 
-def adj(mobyblob):
-    count = 0
+def adjectivesandverbs(mobyblob):
+    adj_count = 0
+    verb_count = 0
     for (word, tag) in mobyblob.tags:
         if tag == 'JJ':
-            count = count + 1
-    return count
+            adj_count = adj_count + 1
+        elif tag == 'VBZ':
+            verb_count = verb_count + 1       
+    return adj_count, verb_count
